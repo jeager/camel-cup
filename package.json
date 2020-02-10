@@ -1,0 +1,32 @@
+{
+  "name": "camel-cup",
+  "version": "1.0.0",
+  "description": "A package for playing Camel Cup",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "create": "yarn run build && npm run test",
+    "build": "tsc -p .",
+    "refresh": "rm -rf ./node_modules ./yarn.lock && yarn",
+    "test": "jest"
+  },
+  "author": "Vinicius Franco",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "ts-jest": "^25.2.0",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@types/figlet": "^1.2.0",
+    "@types/inquirer": "^6.5.0",
+    "@types/jest": "^25.1.2",
+    "@types/node": "^13.7.0",
+    "chalk": "^3.0.0",
+    "commander": "^4.1.1",
+    "figlet": "^1.2.4",
+    "inquirer": "^7.0.4",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2"
+  }
+}
