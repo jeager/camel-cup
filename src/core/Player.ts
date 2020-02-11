@@ -1,11 +1,9 @@
 class Player {
   money: number = 0;
   name: string;
-  color: string;
   
-  constructor(name: string, color: string) {
+  constructor(name: string) {
     this.name = name;
-    this.color = color;
   }
 }
 

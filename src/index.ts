@@ -10,7 +10,7 @@ async function startGame() {
   await setupNewPlayer()
 }
 
-async function setupNumberOfPlayers() {
+const setupNumberOfPlayers = async () => {
   return Inquirer.prompt([{
     message: "Number of players",
     type: 'input',
@@ -21,18 +21,13 @@ async function setupNumberOfPlayers() {
   });
 }
 
-function setupNewPlayer() {
+const setupNewPlayer = () => {
   return Inquirer.prompt([{
     message: "Name of the Player",
     type: 'input',
     name: 'name',
-  }, {
-    message: "Color of the player",
-    type: 'rawlist',
-    name: 'color',
-    choices: ["Red", "Blue", "Green", "Black"],
   }]).then((answers:Inquirer.Answers) => {
-    board.addPlayer(answers.name, answers.color);
+    board.addPlayer(answers.name);
     if(board.numberOfPlayers != board.players.length) {
       setupNewPlayer();
     }
