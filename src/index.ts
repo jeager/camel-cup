@@ -3,13 +3,16 @@
 import Board from './core/Board';
 import Inquirer from 'inquirer';
 import Camel from './core/Camel';
+import Figlet from 'figlet';
 
 const board = new Board();
 
 async function startGame() {
-  await setupNumberOfPlayers()
-  await setupNewPlayer()
+  showGameTitle();
+  await setupNumberOfPlayers();
+  await setupNewPlayer();
   setupCamels();
+  takeAction();
 }
 
 const setupNumberOfPlayers = async () => {
@@ -39,8 +42,21 @@ const setupCamels = () => {
   Camel.COLORS.map(color => {
     board.moveCamel(new Camel(color), board.rollDice(), true);
   });
+}
 
-  board.tiles.map(tile => tile.camels.map(camel => console.log({...camel, positionOnTile: camel.positionOnTile(board)})));
+const showGameTitle = () => {
+  console.log(Figlet.textSync('Camel Cup'))
+}
+
+const takeAction = () => {
+  return Inquirer.prompt([{
+    message: "Number of players",
+    type: 'list',
+    name: 'action',
+    choices: ['Roll dice', "Place a bet for turn", "Place a bet for game", "Place modifier tile"],
+  }]).then((answers:Inquirer.Answers) => {
+    console.log(answers.action)
+  });
 }
 
 startGame();
